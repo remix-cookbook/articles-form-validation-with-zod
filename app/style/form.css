@@ -25,8 +25,12 @@
   width: 100px;
 }
 
-.form fieldset input {
+.form fieldset div {
   flex: 1;
+}
+
+.form fieldset input {
+  width: 100%;
   padding: 8px 16px;
   background-color: #4c566a;
   color: #fff;
@@ -36,12 +40,12 @@
   outline: none;
 }
 
-.form div {
+/* .form div {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 12px 0;
-}
+} */
 
 .form button {
   width: 100px;
@@ -52,4 +56,5 @@
   outline: none;
   font-weight: 600;
   font-size: 20px;
+  margin: 12px auto;
 }

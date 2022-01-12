@@ -1,6 +1,6 @@
-import { ActionFunction, LinksFunction } from "remix";
+import { ActionFunction, LinksFunction, useActionData } from "remix";
 import styles from "~/style/form.css";
-import z from "zod";
+import { z } from "zod";
 
 export const links: LinksFunction = () => [
   {
@@ -21,27 +21,52 @@ export const action: ActionFunction = async ({ request }) => {
     const validated = Validator.parse(formPayload);
     console.log(validated, "Data is valid. Send it to your persistence layer");
   } catch (error) {
-    console.log(error);
+    return {
+      formPayload,
+      error,
+    };
   }
 
   return {};
 };
 
 export default function () {
+  const actionData = useActionData();
+
   return (
     <div className="wrapper">
       <form className="form" method="post">
         <fieldset>
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" />
+          <div>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              defaultValue={actionData?.formPayload?.name}
+              key={actionData?.formPayload?.name}
+            />
+            <span className="text-sm text-red-500">
+              {actionData?.error?.issues[0].message}
+            </span>
+          </div>
         </fieldset>
         <fieldset>
           <label htmlFor="email">Email</label>
-          <input type="text" name="email" id="email" />
+          <div>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              defaultValue={actionData?.formPayload?.email}
+              key={actionData?.formPayload?.email}
+            />
+            <span className="text-sm text-red-500">
+              {actionData?.error?.issues[1].message}
+            </span>
+          </div>
         </fieldset>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

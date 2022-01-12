@@ -1,15 +1,20 @@
 import {
   Links,
+  LinksFunction,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
 } from "remix";
 import type { MetaFunction } from "remix";
 
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: "/tailwindcss" }];
+};
+
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "Remix-Cookbook.com" };
 };
 
 export default function App() {

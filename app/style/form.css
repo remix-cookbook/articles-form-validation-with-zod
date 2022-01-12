@@ -1,0 +1,55 @@
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: #2e3440;
+  padding: 48px;
+}
+
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #e1e1e1;
+  padding: 20px;
+  border-radius: 10px;
+  border: #ccc 1px solid;
+  box-shadow: 0 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form fieldset {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.form fieldset label {
+  width: 100px;
+}
+
+.form fieldset input {
+  flex: 1;
+  padding: 8px 16px;
+  background-color: #4c566a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 6px;
+  outline: none;
+}
+
+.form div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.form button {
+  width: 100px;
+  padding: 8px 16px;
+  background-color: #4c566a;
+  color: #fff;
+  border-radius: 6px;
+  outline: none;
+  font-weight: 600;
+  font-size: 20px;
+}

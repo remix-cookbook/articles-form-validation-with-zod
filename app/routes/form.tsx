@@ -1,5 +1,6 @@
 import { ActionFunction, LinksFunction } from "remix";
 import styles from "~/style/form.css";
+import z from "zod";
 
 export const links: LinksFunction = () => [
   {
@@ -11,7 +12,17 @@ export const links: LinksFunction = () => [
 export const action: ActionFunction = async ({ request }) => {
   const formPayload = Object.fromEntries(await request.formData());
 
-  console.log(formPayload);
+  const Validator = z.object({
+    name: z.string().min(6),
+    email: z.string().email(),
+  });
+
+  try {
+    const validated = Validator.parse(formPayload);
+    console.log(validated, "Data is valid. Send it to your persistence layer");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {};
 };
@@ -26,7 +37,7 @@ export default function () {
         </fieldset>
         <fieldset>
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="text" name="email" id="email" />
         </fieldset>
         <div>
           <button type="submit">Submit</button>
